@@ -12,10 +12,13 @@ public class House {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "area")
     private Integer area;
+
     @Column(name = "garage")
     private Boolean garage;
+
     @ManyToMany(mappedBy = "houses", cascade = CascadeType.ALL)
     private List<User> users = new ArrayList<>();
 
@@ -63,5 +66,16 @@ public class House {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "id=" + id +
+                ", area=" + area +
+                ", garage=" + garage +
+                ", users=" + users +
+                ", cars=" + cars +
+                '}';
     }
 }

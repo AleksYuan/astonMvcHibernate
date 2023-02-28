@@ -55,4 +55,14 @@ public class Wheel {
     public void setCar(Car car) {
         this.car = car;
     }
+
+    @Override
+    public String toString() {
+        return "Wheel{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", radius=" + radius +
+                ", car=" + car +
+                '}';
+    }
 }

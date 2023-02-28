@@ -21,12 +21,12 @@ public class Car {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="house_id", nullable=true)
     private House house;
+
     @ManyToMany(mappedBy = "cars", cascade = CascadeType.ALL)
     private List<User> users = new ArrayList<>();
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Wheel> wheels = new ArrayList<>();
-
 
     public House getHouse() {
         return house;
@@ -85,5 +85,18 @@ public class Car {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", comment='" + comment + '\'' +
+                ", createdYear=" + createdYear +
+                ", house=" + house +
+                ", users=" + users +
+                ", wheels=" + wheels +
+                '}';
     }
 }
