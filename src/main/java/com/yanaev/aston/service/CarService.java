@@ -2,7 +2,6 @@ package com.yanaev.aston.service;
 
 import com.yanaev.aston.dao.CarDAO;
 import com.yanaev.aston.model.Car;
-import com.yanaev.aston.model.House;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public class CarService {
         this.carDAO = carDAO;
     }
 
-    public List<Car> getAllHousesFromRepo() {
+    public List<Car> getAllCarFromRepo() {
         return carDAO.getAll();
     }
 
@@ -26,21 +25,21 @@ public class CarService {
         if (car.isPresent()) return car.get();
         return null;
     }
-//
-//    public void saveUserInRepo(User user) {
-//        userDAO.save(user);
-//    }
-//
-//    public void deleteUserByIdFromRepo(Long id) {
-//        User user = getUserByIdFromRepo(id);
-//        if (user != null) userDAO.delete(user);
-//    }
-//
-//    public void updateUserInRepo(Long id, User user) {
-//        User current = getUserByIdFromRepo(id);
-//        if (current != null) {
-//            user.setId(id);
-//            userDAO.update(user);
-//        }
-//    }
+
+    public void saveCarInRepo(Car car) {
+        carDAO.save(car);
+    }
+
+    public void deleteCarByIdFromRepo(Long id) {
+        Car car = getCarByIdFromRepo(id);
+        if (car != null) carDAO.delete(car);
+    }
+
+    public void updateCarInRepo(Long id, Car car) {
+        Car current = getCarByIdFromRepo(id);
+        if (current != null) {
+            car.setId(id);
+            carDAO.update(car);
+        }
+    }
 }

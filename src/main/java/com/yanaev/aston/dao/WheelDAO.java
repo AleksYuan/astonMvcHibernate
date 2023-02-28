@@ -2,7 +2,6 @@ package com.yanaev.aston.dao;
 
 
 import com.yanaev.aston.model.Wheel;
-import com.yanaev.aston.model.Wheel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -40,6 +39,7 @@ public class WheelDAO implements AstonMvcDAO<Wheel> {
     public void delete(Wheel entity) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
+            entity = session.merge(entity);
             session.remove(entity);
             transaction.commit();
         }

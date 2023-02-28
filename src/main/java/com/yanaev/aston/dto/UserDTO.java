@@ -68,21 +68,21 @@ public class UserDTO {
 
     public void addCar(Car car) {
         if (cars == null) cars = new ArrayList<>();
-        if (!cars.equals(car)) cars.add(car);
+        if (!cars.contains(car)) cars.add(car);
     }
 
     public void deleteCar(Car car) {
         if (cars == null) cars = new ArrayList<>();
-        if (cars.equals(car)) cars.remove(car);
+        cars.remove(car);
     }
 
     public void addHouse(House house) {
-        if (houses == null) cars = new ArrayList<>();
-        if (!houses.equals(house)) houses.add(house);
+        if (houses == null) houses = new ArrayList<>();
+        if (!houses.contains(house)) houses.add(house);
     }
 
     public void deleteHouse(House house) {
-        if (houses == null) cars = new ArrayList<>();
-        if (houses.equals(house)) cars.remove(house);
+        if (houses == null) houses = new ArrayList<>();
+        houses.remove(house);
     }
 }

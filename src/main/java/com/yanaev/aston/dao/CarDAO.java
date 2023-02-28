@@ -28,7 +28,7 @@ public class CarDAO implements AstonMvcDAO<Car> {
 
     @Override
     public Optional<Car> getById(Long id) {
-        Car car ;
+        Car car;
         Session session = sessionFactory.openSession();
         car = session.get(Car.class, id);
         if (car == null) return Optional.empty();
@@ -39,6 +39,7 @@ public class CarDAO implements AstonMvcDAO<Car> {
     public void delete(Car entity) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
+            entity = session.merge(entity);
             session.remove(entity);
             transaction.commit();
         }

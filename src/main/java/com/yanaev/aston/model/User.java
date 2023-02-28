@@ -19,13 +19,13 @@ public class User {
     private Integer age;
     @Column(name = "phone_number")
     private String phoneNumber;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_house",
             joinColumns = @JoinColumn(name = "users_id"),
             inverseJoinColumns = @JoinColumn(name = "house_id"))
     private List<House> houses = new ArrayList<>();
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_car",
             joinColumns = @JoinColumn(name = "users_id"),

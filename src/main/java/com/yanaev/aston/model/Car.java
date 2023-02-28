@@ -8,11 +8,9 @@ import java.util.List;
 @Entity
 @Table(name = "car")
 public class Car {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "name")
     private String name;
     @Column(name = "comment")
@@ -23,12 +21,28 @@ public class Car {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="house_id", nullable=true)
     private House house;
-    @ManyToMany(mappedBy = "cars")
+    @ManyToMany(mappedBy = "cars", cascade = CascadeType.ALL)
     private List<User> users = new ArrayList<>();
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Wheel> wheels = new ArrayList<>();
 
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
+    }
+
+    public List<Wheel> getWheels() {
+        return wheels;
+    }
+
+    public void setWheels(List<Wheel> wheels) {
+        this.wheels = wheels;
+    }
 
     public Car() {
     }
