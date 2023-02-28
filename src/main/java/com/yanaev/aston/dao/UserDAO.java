@@ -38,9 +38,10 @@ public class UserDAO implements AstonMvcDAO<User> {
     @Override
     public void delete(User entity) {
         try (Session session = sessionFactory.openSession()) {
-        Transaction transaction = session.beginTransaction();
-        session.remove(entity);
-        transaction.commit();
+            Transaction transaction = session.beginTransaction();
+            entity = session.merge(entity);
+            session.remove(entity);
+            transaction.commit();
         }
     }
 

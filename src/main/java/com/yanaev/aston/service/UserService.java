@@ -25,8 +25,7 @@ public class UserService {
 
     public User getUserByIdFromRepo(Long id) {
         Optional<User> user = userDAO.getById(id);
-        if (user.isPresent()) return user.get();
-        return null;
+        return user.orElse(null);
     }
 
     public void saveUserInRepo(User user) {

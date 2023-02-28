@@ -16,33 +16,29 @@ public class HouseService {
         this.houseDAO = houseDAO;
     }
 
-
     public List<House> getAllHousesFromRepo() {
         return houseDAO.getAll();
     }
 
     public House getHouseByIdFromRepo(Long id) {
         Optional<House> house = houseDAO.getById(id);
-        if (house.isPresent()) return house.get();
-        return null;
+        return house.orElse(null);
     }
-//
-//    public void saveUserInRepo(User user) {
-//        userDAO.save(user);
-//    }
-//
-//    public void deleteUserByIdFromRepo(Long id) {
-//        User user = getUserByIdFromRepo(id);
-//        if (user != null) userDAO.delete(user);
-//    }
-//
-//    public void updateUserInRepo(Long id, User user) {
-//        User current = getUserByIdFromRepo(id);
-//        if (current != null) {
-//            user.setId(id);
-//            userDAO.update(user);
-//        }
-//    }
 
+    public void saveHouseInRepo(House house) {
+        houseDAO.save(house);
+    }
 
+    public void deleteHouseByIdFromRepo(Long id) {
+        House house = getHouseByIdFromRepo(id);
+        if (house != null) houseDAO.delete(house);
+    }
+
+    public void updateHouseInRepo(Long id, House house) {
+        House current = getHouseByIdFromRepo(id);
+        if (current != null) {
+            house.setId(id);
+            houseDAO.update(house);
+        }
+    }
 }

@@ -1,7 +1,6 @@
 package com.yanaev.aston.dao;
 
 import com.yanaev.aston.model.House;
-import com.yanaev.aston.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -39,6 +38,7 @@ public class HouseDAO implements AstonMvcDAO<House> {
     public void delete(House entity) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
+            entity = session.merge(entity);
             session.remove(entity);
             transaction.commit();
         }

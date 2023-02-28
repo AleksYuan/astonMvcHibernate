@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>car/one</title>
+</head>
+<body>
+
+<label for="id">id: </label>
+<b th:text="${car.id}" id="id"></b>
+<br/>
+
+<label for="name">name: </label>
+<b th:text="${car.name}" id="name"></b>
+<br/>
+
+<label for="comment">comment: </label>
+<b th:text="${car.comment}" id="comment"></b>
+<br/>
+
+<label for="createdYear">createdYear: </label>
+<b th:text="${car.createdYear}" id="createdYear"></b>
+<br/>
+
+<label for="houseId">houseId: </label>
+<b th:text="${car.house.id}" th:if="${car.house != null}" id="houseId"></b>
+<b th:text="${'нету дома'}" th:if="${car.house == null}" ></b>
+<br/>
+<form th:method="PATCH" th:action="@{/car/{id}/update-house(id=${car.id})}">
+    <label th:for="idHouse">Добавить / изменить дом (id)</label>
+    <input type="text" th:name="idHouse" th:id="idHouse">
+    <input type="submit" value="Внести изменения">
+</form>
+
+
+<div th:each="user : ${car.getUsers()}">
+    <a th:href="@{/users/{id}(id=${user.id})}"
+    th:text="${'id:   ' + user.id + ' | name:  ' + user.firstName + ' | phone:   ' + user.phoneNumber}"/>
+</div>
+<br/>
+<br/>
+<form th:method="PATCH" th:action="@{/car/{id}/add-user(id=${car.id})}">
+    <label th:for="idUser">Добавить Человека (id)</label>
+    <input type="text" th:name="idUser" th:id="idUser">
+    <input type="submit" value="добавить человека">
+</form>
+
+
+<div th:each="wheel : ${car.wheels}">
+    <a th:href="@{/users/{id}(id=${wheel.id})}"
+       th:text="${'id:   ' + wheel.id + ' | name:  ' + wheel.type + ' | phone:   ' + wheel.radius}"/>
+</div>
+<br/>
+<br/>
+<form th:method="PATCH" th:action="@{/car/{id}/add-wheel(id=${car.id})}">
+    <label th:for="idWheel">Добавить Колесо (id)</label>
+    <input type="text" th:name="idWheel" th:id="idWheel">
+    <input type="submit" value="добавить колесо">
+</form>
+
+
+<a th:href="@{/car/{id}/edit(id=${car.id})}">Edit</a>
+<br/>
+
+<form th:method="DELETE" th:action="@{/car/{id}(id=${car.id})}">
+    <input type="submit" value="Delete">
+</form>
+
+</body>
+</html>

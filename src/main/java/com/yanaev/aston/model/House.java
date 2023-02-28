@@ -16,11 +16,19 @@ public class House {
     private Integer area;
     @Column(name = "garage")
     private Boolean garage;
-    @ManyToMany(mappedBy = "houses")
+    @ManyToMany(mappedBy = "houses", cascade = CascadeType.ALL)
     private List<User> users = new ArrayList<>();
 
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Car> cars = new ArrayList<>();
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
 
     public House() {
     }
