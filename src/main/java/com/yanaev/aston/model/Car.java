@@ -11,10 +11,13 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "comment")
     private String comment;
+
     @Column(name = "created_year")
     private Integer createdYear;
 
@@ -99,4 +102,5 @@ public class Car {
                 ", wheels=" + wheels +
                 '}';
     }
+
 }
